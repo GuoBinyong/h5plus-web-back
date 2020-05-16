@@ -15,7 +15,7 @@ export const augModeMap:{
      * @param conditionBack : ConditionBack   调用条件函数的 ConditionBack 对象
      * @returns any    返回真值，表示是否要执行 action ，并且会被作为参数传给 action ； 返回假值，表示不执行 action
      */
-  type Condition<R> = (stepNumber:number,conditionBack:ConditionBack)=> R;
+  type Condition<CondResult> = (stepNumber:number,conditionBack:ConditionBack)=> CondResult;
 
       /**
      * action : (stepNumber, conditionResult,conditionBack)=>boolean   行为；默认值是正常的返回
@@ -24,15 +24,17 @@ export const augModeMap:{
      * @param conditionBack : ConditionBack   调用条件函数的 ConditionBack 对象
      * @returns boolean     表求行为是否执行成功
      */
-  type Action<R> = (stepNumber:number, conditionResult:R,conditionBack)=>boolean;
+  type Action<CondResult> = (stepNumber:number, conditionResult:CondResult,conditionBack)=>boolean;
 
   type AugCallBack = ()=>number;
 
-  interface ConditionBackOpts<R> {
-    condition ?: Condition<R>;         //条件；默认值是 allPass
-    action ?: Action<R>;   //行为；默认值是正常的返回
+  type Augmenter = number | string | AugCallBack;
+
+  interface ConditionBackOpts<CondResult> {
+    condition ?: Condition<CondResult>;         //条件；默认值是 allPass
+    action ?: Action<CondResult>;   //行为；默认值是正常的返回
     augMode ?:  AugMode     //增加模式
-    augmenter ?: number | string | AugCallBack      //根据新值的类型自动设置增量 或者 增量回调
+    augmenter ?: Augmenter      //根据新值的类型自动设置增量 或者 增量回调
   }
 
 
@@ -44,7 +46,7 @@ export const augModeMap:{
  * 增量返回类
  * 主要用于web
  */
-export class ConditionBack<R> {
+export class ConditionBack<CondResult> {
 
 
     /**
@@ -54,7 +56,7 @@ export class ConditionBack<R> {
      * @param augMode :  AugMode     增加模式
      * @param augmenter : number | string | function      根据新值的类型自动设置增量 或者 增量回调
      */
-    constructor(props?:ConditionBackOpts<R>);
+    constructor(props?:ConditionBackOpts<CondResult>);
   
   
     //增加模式
@@ -69,7 +71,7 @@ export class ConditionBack<R> {
      * @param conditionBack : ConditionBack   调用条件函数的 ConditionBack 对象
      * @returns any    返回真值，表示是否要执行 action ，并且会被作为参数传给 action ； 返回假值，表示不执行 action
      */
-    condition: Condition<R>;
+    condition: Condition<CondResult>;
   
     /**
      * action : (stepNumber, conditionResult,conditionBack)=>boolean   行为；默认值是正常的返回
@@ -78,7 +80,7 @@ export class ConditionBack<R> {
      * @param conditionBack : ConditionBack   调用条件函数的 ConditionBack 对象
      * @returns boolean     表求行为是否执行成功
      */
-    action?:Action<R>;
+    action?:Action<CondResult>;
   
   
   
@@ -95,50 +97,7 @@ export class ConditionBack<R> {
      * 根据当前设置的增量模式获取增量
      * @return {number}
      */
-    get augmenter(){
-  
-      let aug = this.augConstant ;
-  
-      switch (this.augMode){
-  
-        case augModeMap.history : {
-          aug = history.length - 1;
-          break ;
-        }
-  
-  
-        case augModeMap.callBack : {
-          aug = this.augCallBack();
-          break ;
-        }
-      }
-  
-      return aug;
-  
-    }
-  
-  
-    /**
-     * 根据新值的类型自动设置增量 或者 增量回调
-     * @param newValue
-     */
-    set augmenter(newValue){
-  
-      let newValueType = typeof newValue ;
-  
-      if (newValueType == "function" ) {
-        this.augCallBack = newValue ;
-      }else {
-        let newNum = parseInt(newValue);
-  
-        if (!isNaN(newNum)) {
-          this.augConstant = newNum ;
-        }
-  
-      }
-  
-  
-    }
+    augmenter:Augmenter;
   
   
   
@@ -146,39 +105,7 @@ export class ConditionBack<R> {
   
   
   
-    back(locat){
-      if (locat == null){
-        locat = 1
-      }
-  
-      let backLocat = locat ;
-      let backNumber = parseInt(locat) ;
-  
-      if (backNumber === 0) {
-        history.go(0) ;
-        return true;
-      }
-  
-      if (!isNaN(backNumber)){
-        backLocat = backNumber + this.augmenter ;
-      }
-  
-  
-      let conditionResult = this.condition(backLocat, this) ;
-  
-      let backResult = false ;
-  
-      try {
-        if (conditionResult && this.action){
-          backResult = this.action(backLocat,conditionResult,this);
-        }
-      }catch (e) {
-        backResult = false ;
-      }
-  
-      return backResult ;
-  
-    }
+    back(locat?:any):boolean;
   
   
   }
