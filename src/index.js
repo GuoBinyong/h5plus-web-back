@@ -1,10 +1,8 @@
+export * from './ConditionBack.js' ;
+export * from './WebviewBack.js';
+export * from './BackScheme.js'
+export * as Actions from './Action.js';
+export * as Conditions from './Condition.js';
 
-import {ConditionBack,augModeMap} from './ConditionBack.js' ;
-import {WebviewBack,specialWebviewTypeID,isCurrentWebview,getTypeIDByWebviewID,getAllTypeIDsByWebviewID,getWebviewByTypeID,webviewIDIsTypeID} from './WebviewBack.js';
-import {BackScheme} from './BackScheme.js'
-import * as Actions from './Action.js';
-import * as Conditions from './Condition.js';
-
-
-export {BackScheme,ConditionBack,augModeMap,WebviewBack,specialWebviewTypeID,getTypeIDByWebviewID,getAllTypeIDsByWebviewID,webviewIDIsTypeID,getWebviewByTypeID,isCurrentWebview,Actions,Conditions} ;
+import {ConditionBack} from "./ConditionBack";
 export default ConditionBack;
