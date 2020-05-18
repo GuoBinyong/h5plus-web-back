@@ -15,7 +15,7 @@ export const augModeMap:{
      * @param conditionBack : ConditionBack   调用条件函数的 ConditionBack 对象
      * @returns any    返回真值，表示是否要执行 action ，并且会被作为参数传给 action ； 返回假值，表示不执行 action
      */
-  type Condition<CondResult> = (stepNumber:number,conditionBack:ConditionBack)=> CondResult;
+export type Condition<CondResult,CondBack = ConditionBack> = (stepNumber:any,conditionBack:CondBack)=> CondResult;
 
       /**
      * action : (stepNumber, conditionResult,conditionBack)=>boolean   行为；默认值是正常的返回
@@ -24,15 +24,15 @@ export const augModeMap:{
      * @param conditionBack : ConditionBack   调用条件函数的 ConditionBack 对象
      * @returns boolean     表求行为是否执行成功
      */
-  type Action<CondResult> = (stepNumber:number, conditionResult:CondResult,conditionBack)=>boolean;
+export  type Action<CondResult,CondBack = ConditionBack> = (stepNumber:any, conditionResult:CondResult,conditionBack:CondBack)=>boolean;
 
   type AugCallBack = ()=>number;
 
   type Augmenter = number | string | AugCallBack;
 
-  interface ConditionBackOpts<CondResult> {
-    condition ?: Condition<CondResult>;         //条件；默认值是 allPass
-    action ?: Action<CondResult>;   //行为；默认值是正常的返回
+ export interface ConditionBackNewOpts<CondResult,CondBack = ConditionBack> {
+    condition ?: Condition<CondResult,CondBack>;         //条件；默认值是 allPass
+    action ?: Action<CondResult,CondBack>;   //行为；默认值是正常的返回
     augMode ?:  AugMode     //增加模式
     augmenter ?: Augmenter      //根据新值的类型自动设置增量 或者 增量回调
   }
@@ -46,7 +46,7 @@ export const augModeMap:{
  * 增量返回类
  * 主要用于web
  */
-export class ConditionBack<CondResult> {
+export class ConditionBack<CondResult,CondBack = this> {
 
 
     /**
@@ -56,7 +56,7 @@ export class ConditionBack<CondResult> {
      * @param augMode :  AugMode     增加模式
      * @param augmenter : number | string | function      根据新值的类型自动设置增量 或者 增量回调
      */
-    constructor(props?:ConditionBackOpts<CondResult>);
+    constructor(props?:ConditionBackNewOpts<CondResult,CondBack>);
   
   
     //增加模式
@@ -71,7 +71,7 @@ export class ConditionBack<CondResult> {
      * @param conditionBack : ConditionBack   调用条件函数的 ConditionBack 对象
      * @returns any    返回真值，表示是否要执行 action ，并且会被作为参数传给 action ； 返回假值，表示不执行 action
      */
-    condition: Condition<CondResult>;
+    condition: Condition<CondResult,CondBack>;
   
     /**
      * action : (stepNumber, conditionResult,conditionBack)=>boolean   行为；默认值是正常的返回
@@ -80,7 +80,7 @@ export class ConditionBack<CondResult> {
      * @param conditionBack : ConditionBack   调用条件函数的 ConditionBack 对象
      * @returns boolean     表求行为是否执行成功
      */
-    action?:Action<CondResult>;
+    action?:Action<CondResult,CondBack>;
   
   
   
