@@ -112,9 +112,9 @@ export function webviewIDIsTypeID(webviewID: WebviewID, typeID: WebviewType): bo
 
 
 /**
- * WebviewBack 构建函数的选项类型
+ * H5plusWebBack 构建函数的选项类型
  */
-interface WebviewBackNewOpts<CondResult> extends ConditionBackNewOpts<CondResult, WebviewBack> {
+interface H5plusWebBackNewOpts<CondResult> extends ConditionBackNewOpts<CondResult, H5plusWebBack> {
     targetTypeID?: WebviewType;    //目标 Webview 的 WebviewTypeID
     comparedTypeIDs?: WebviewType[];      //被比较的 Webview 的 WebviewTypeID 的数组
     backTypeID?: WebviewType;      //返回到的 Webview 的 WebviewTypeID
@@ -129,7 +129,7 @@ interface WebviewBackNewOpts<CondResult> extends ConditionBackNewOpts<CondResult
  * 增量返回类
  * 主要用于 HTML5+ App
  */
-export class WebviewBack<CondResult> extends ConditionBack<CondResult> {
+export class H5plusWebBack<CondResult> extends ConditionBack<CondResult> {
 
     /**
      * 构造函数
@@ -141,7 +141,7 @@ export class WebviewBack<CondResult> extends ConditionBack<CondResult> {
      * @param augMode :  AugMode     增加模式
      * @param augmenter : number | string | function      根据新值的类型自动设置增量 或者 增量回调
      */
-    constructor(newOpts?: WebviewBackNewOpts<CondResult>);
+    constructor(newOpts?: H5plusWebBackNewOpts<CondResult>);
 
 
 

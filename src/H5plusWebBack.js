@@ -238,7 +238,7 @@ export function webviewIDIsTypeID(webviewID,typeID) {
  * 增量返回类
  * 主要用于 HTML5+ App
  */
-export class WebviewBack extends ConditionBack{
+export class H5plusWebBack extends ConditionBack{
 
   /**
    * 构造函数
