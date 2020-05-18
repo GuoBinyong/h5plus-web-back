@@ -1,8 +1,9 @@
 
 //特殊的webviewID
-import {ConditionBack} from "./ConditionBack";
-import {aboutBeyondHistory} from './Condition.js'
-import {createActionBeyondHistory,closeWebview} from './Action.js';
+import {ConditionBack,Conditions,Actions} from "back-scheme";
+let {aboutBeyondHistory} = Conditions;
+let {createActionBeyondHistory} = Actions
+import {closeWebview} from './Action';
 
 export const specialWebviewTypeID = {
   LaunchWebview : "LaunchWebview" ,   //应用首页WebviewObject窗口对象

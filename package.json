@@ -47,5 +47,8 @@
     "eslint": "^7.0.0",
     "rollup": "^2.7.2",
     "rollup-plugin-babel": "^4.2.0"
+  },
+  "dependencies": {
+    "back-scheme": "^1.0.0"
   }
 }

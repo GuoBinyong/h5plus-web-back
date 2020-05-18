@@ -1,4 +1,4 @@
-import { ConditionBack, ConditionBackNewOpts } from "./ConditionBack"
+import { ConditionBack, ConditionBackNewOpts } from "back-scheme"
 
 
 export declare const specialWebviewTypeID: {
