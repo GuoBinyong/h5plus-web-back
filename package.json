@@ -1,21 +1,30 @@
 {
-  "name": "library-rollup-template",
+  "name": "h5plus-web-back",
   "version": "1.0.0",
-  "description": "library-rollup-template 称为 库构建模板，又称 公共代码构建模板 ，是专门用于构建 公共代码（如：封装的库、工具等） 的 rollup 配置模板，当需要开发和构建公共代码时，直接克隆本项目即可，并默认在的 src 目录下开发即可；",
-  "main": "dist/library-rollup-template.cjs.js",
-  "module": "dist/library-rollup-template.esm.js",
+  "description": "h5plus-web-back 为在 DCloud 的 HTML5+ 的 Webview 中实现复杂的返回方案 而 封装的 用于 back-scheme 的 条件返回 ConditionBack 的子类",
+  "main": "dist/h5plus-web-back.cjs.js",
+  "module": "dist/h5plus-web-back.esm.js",
   "types": "types/index.d.ts",
   "sideEffects": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/GuoBinyong/library-rollup-template"
+    "url": "https://github.com/GuoBinyong/h5plus-web-back"
   },
   "keywords": [
-    "前端库",
-    "web库",
-    "library",
-    "rollup 模板",
-    "公共代码"
+    "DCloud",
+    "HBuilder",
+    "HTML5+",
+    "HTML5",
+    "HTML5 Plus",
+    "Plus",
+    "condition",
+    "back",
+    "scheme",
+    "back scheme",
+    "condition back",
+    "返回",
+    "方案",
+    "条件返回"
   ],
   "author": "郭斌勇",
   "license": "ISC",
