@@ -1,13 +1,13 @@
-import {ConditionBack} from "./ConditionBack"
+import { ConditionBack } from "./ConditionBack"
 
 interface BackMap {
-    [key:string]:ConditionBack<any>;
+  [key: string]: ConditionBack<any>;
 }
 
-type BackMapGet = ()=>BackMap;
+type BackMapGet = () => BackMap;
 
 type BackStack = ConditionBack<any>[];
-type BackStackGet = ()=>BackStack;
+type BackStackGet = () => BackStack;
 
 
 export class BackScheme {
@@ -19,7 +19,7 @@ export class BackScheme {
    *
    * 通过 back 方法会选在 backMap 中查找并执行 相应的 conditionBack ；如果查找失败 或者 conditionBack 执行失败 ，则会通过 this.performBackStack(locat) 依次执行 backStack 中的 conditionBack ;
    */
-  constructor(backMap,backStack);
+  constructor(backMap, backStack);
 
 
 
@@ -33,7 +33,7 @@ export class BackScheme {
    * 注意：
    * - 该函数会选在 this.backMap 中查找并执行 相应的 conditionBack ；如果查找失败 或者 conditionBack 执行失败  并且 disableBackStack 参数的值不为 true，则会通过 this.performBackStack(locat) 依次执行 backStack 中的 conditionBack ;
    */
-  back(locat?:any,key?:string,disableBackStack?:boolean):boolean;
+  back(locat?: any, key?: string, disableBackStack?: boolean): boolean;
 
 
 
@@ -46,7 +46,7 @@ export class BackScheme {
   /**
    * 设置 backMap ；
    */
-  backMap:BackMap | BackMapGet;
+  backMap: BackMap | BackMapGet;
 
 
 
@@ -58,7 +58,7 @@ export class BackScheme {
    * 注意：
    * 当 backMap 不是对象 或者 this._backMap 是函数时，会设置 this.backMap = backMap ;
    */
-  appendBackMap(backMap:BackMap):void;
+  appendBackMap(backMap: BackMap): void;
 
 
 
@@ -70,7 +70,7 @@ export class BackScheme {
    *
    * 当 this._backMap 是函数时，会把 this._backMap 重置为空对象
    */
-  appendBackMapItem(key:string,back:ConditionBack<any>):void;
+  appendBackMapItem(key: string, back: ConditionBack<any>): void;
 
 
   //backMap:结束
@@ -92,7 +92,7 @@ export class BackScheme {
    * 设置返回栈；
    * @param newValue : Array<ConditionBack> | function | null
    */
-  backStack:BackStack|BackStackGet;
+  backStack: BackStack | BackStackGet;
 
 
 
@@ -104,7 +104,7 @@ export class BackScheme {
    * @param locat
    * @returns conditionBack  返回成功执行的 conditionBack
    */
-  performBackStack(locat?:any):ConditionBack<any>;
+  performBackStack(locat?: any): ConditionBack<any>;
 
 
 
@@ -112,10 +112,3 @@ export class BackScheme {
 
 
 }
-
-
-
-
-
-
-export default BackScheme ;

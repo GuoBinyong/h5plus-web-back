@@ -1,20 +1,20 @@
-import {ConditionBack,ConditionBackNewOpts} from "./ConditionBack"
+import { ConditionBack, ConditionBackNewOpts } from "./ConditionBack"
 
 
-export const specialWebviewTypeID:{
-    LaunchWebview : "LaunchWebview" ,   //应用首页WebviewObject窗口对象
-    SecondWebview : "SecondWebview"  , //第二个首页WebviewObject窗口对象
-    CurrentWebview : "CurrentWebview" ,  //当前窗口的WebviewObject对象
-    TopWebview : "TopWebview" ,     //应用显示栈顶的WebviewObject窗口对象
+export declare const specialWebviewTypeID: {
+    LaunchWebview: "LaunchWebview",   //应用首页WebviewObject窗口对象
+    SecondWebview: "SecondWebview", //第二个首页WebviewObject窗口对象
+    CurrentWebview: "CurrentWebview",  //当前窗口的WebviewObject对象
+    TopWebview: "TopWebview",     //应用显示栈顶的WebviewObject窗口对象
     Opener: "Opener"  // 获取当前Webview窗口的创建者
 };
 
-type SpecialWebviewType = 
+type SpecialWebviewType =
     "LaunchWebview" |   //应用首页WebviewObject窗口对象
     "SecondWebview" | //第二个首页WebviewObject窗口对象
     "CurrentWebview" |  //当前窗口的WebviewObject对象
     "TopWebview" |     //应用显示栈顶的WebviewObject窗口对象
-    "Opener" ; // 获取当前Webview窗口的创建者
+    "Opener"; // 获取当前Webview窗口的创建者
 
 
 type WebviewID = string
@@ -36,7 +36,7 @@ type WebviewObject = any;
  * @param typeID
  * @return {*}
  */
-export function getWebviewByTypeID(typeID?:WebviewType):WebviewObject;
+export function getWebviewByTypeID(typeID?: WebviewType): WebviewObject;
 
 
 
@@ -50,7 +50,7 @@ export function getWebviewByTypeID(typeID?:WebviewType):WebviewObject;
  * @param typeID : string
  *
  */
-export function transformTypeIDToWebviewID(typeID:WebviewType):WebviewID;
+export function transformTypeIDToWebviewID(typeID: WebviewType): WebviewID;
 
 
 
@@ -64,7 +64,7 @@ export function transformTypeIDToWebviewID(typeID:WebviewType):WebviewID;
  * @param webviewID
  * @return typeID
  */
-export function getTypeIDByWebviewID(webviewID:WebviewID):WebviewType;
+export function getTypeIDByWebviewID(webviewID: WebviewID): WebviewType;
 
 
 
@@ -76,7 +76,7 @@ export function getTypeIDByWebviewID(webviewID:WebviewID):WebviewType;
  * @param webviewID
  * @return Array<typeID>
  */
-export function getAllTypeIDsByWebviewID(webviewID:WebviewID):WebviewType[];
+export function getAllTypeIDsByWebviewID(webviewID: WebviewID): WebviewType[];
 
 
 
@@ -90,7 +90,7 @@ export function getAllTypeIDsByWebviewID(webviewID:WebviewID):WebviewType[];
  * @param webviewID
  * @return {boolean}
  */
-export function isCurrentWebview(webviewID:WebviewID):boolean;
+export function isCurrentWebview(webviewID: WebviewID): boolean;
 
 
 
@@ -103,7 +103,7 @@ export function isCurrentWebview(webviewID:WebviewID):boolean;
  * @param typeID
  * @returns {boolean}
  */
-export function webviewIDIsTypeID(webviewID:WebviewID,typeID:WebviewType):boolean;
+export function webviewIDIsTypeID(webviewID: WebviewID, typeID: WebviewType): boolean;
 
 
 
@@ -114,10 +114,10 @@ export function webviewIDIsTypeID(webviewID:WebviewID,typeID:WebviewType):boolea
 /**
  * WebviewBack 构建函数的选项类型
  */
-interface WebviewBackNewOpts<CondResult> extends ConditionBackNewOpts<CondResult,WebviewBack> {
-    targetTypeID ?: WebviewType;    //目标 Webview 的 WebviewTypeID
-    comparedTypeIDs ?: WebviewType[];      //被比较的 Webview 的 WebviewTypeID 的数组
-    backTypeID ?: WebviewType;      //返回到的 Webview 的 WebviewTypeID
+interface WebviewBackNewOpts<CondResult> extends ConditionBackNewOpts<CondResult, WebviewBack> {
+    targetTypeID?: WebviewType;    //目标 Webview 的 WebviewTypeID
+    comparedTypeIDs?: WebviewType[];      //被比较的 Webview 的 WebviewTypeID 的数组
+    backTypeID?: WebviewType;      //返回到的 Webview 的 WebviewTypeID
 }
 
 
@@ -131,48 +131,48 @@ interface WebviewBackNewOpts<CondResult> extends ConditionBackNewOpts<CondResult
  */
 export class WebviewBack<CondResult> extends ConditionBack<CondResult> {
 
-  /**
-   * 构造函数
-   * @param targetTypeID : specialWebviewTypeID | string    目标 Webview 的 WebviewTypeID
-   * @param comparedTypeIDs : [TypeID]      被比较的 Webview 的 WebviewTypeID 的数组
-   * @param backTypeID : specialWebviewTypeID | string      返回到的 Webview 的 WebviewTypeID
-   * @param condition : (stepNumber,conditionBack)=> any         条件；默认值是 allPass
-   * @param action : (stepNumber, conditionResult,conditionBack)=>boolean   行为；默认值是正常的返回
-   * @param augMode :  AugMode     增加模式
-   * @param augmenter : number | string | function      根据新值的类型自动设置增量 或者 增量回调
-   */
-  constructor(newOpts?:WebviewBackNewOpts<CondResult>);
+    /**
+     * 构造函数
+     * @param targetTypeID : specialWebviewTypeID | string    目标 Webview 的 WebviewTypeID
+     * @param comparedTypeIDs : [TypeID]      被比较的 Webview 的 WebviewTypeID 的数组
+     * @param backTypeID : specialWebviewTypeID | string      返回到的 Webview 的 WebviewTypeID
+     * @param condition : (stepNumber,conditionBack)=> any         条件；默认值是 allPass
+     * @param action : (stepNumber, conditionResult,conditionBack)=>boolean   行为；默认值是正常的返回
+     * @param augMode :  AugMode     增加模式
+     * @param augmenter : number | string | function      根据新值的类型自动设置增量 或者 增量回调
+     */
+    constructor(newOpts?: WebviewBackNewOpts<CondResult>);
 
 
 
-  //目标 Webview 的 WebviewTypeID
-  targetTypeID:WebviewType;
+    //目标 Webview 的 WebviewTypeID
+    targetTypeID: WebviewType;
 
 
 
-  /**
-   * 被比较的 Webview 的 WebviewTypeID 的数组
-   * @type [WebviewTypeID]
-   *
-   * 在执行 back 操作之前，会先判断 comparedWebviewIDs 中是否包含 targetWebviewID，如果包含，才会断续执行 back 操作，否则，直接返回 false；
-   */
-  comparedTypeIDs:WebviewType[];
+    /**
+     * 被比较的 Webview 的 WebviewTypeID 的数组
+     * @type [WebviewTypeID]
+     *
+     * 在执行 back 操作之前，会先判断 comparedWebviewIDs 中是否包含 targetWebviewID，如果包含，才会断续执行 back 操作，否则，直接返回 false；
+     */
+    comparedTypeIDs: WebviewType[];
 
 
 
 
 
-  //返回到的 Webview 的 WebviewTypeID
-  backTypeID:WebviewType;
+    //返回到的 Webview 的 WebviewTypeID
+    backTypeID: WebviewType;
 
 
 
-  get targetWebviewObject():WebviewObject;
+    get targetWebviewObject(): WebviewObject;
 
-  get targetWebviewID():WebviewID;
+    get targetWebviewID(): WebviewID;
 
-  get comparedWebviewIDs():WebviewID[];
+    get comparedWebviewIDs(): WebviewID[];
 
-  get backWebviewObject():WebviewObject;
+    get backWebviewObject(): WebviewObject;
 
 }

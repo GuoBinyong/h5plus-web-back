@@ -125,7 +125,7 @@ export function jumpTargetAndContinue(backLocat, conditionResult, conditionBack)
 
 //超出时继续
 export function continueForOver(backLocat, conditionResult, conditionBack) {
-  let overbackLocat = conditionResult.overNum;
+  let overStepNumber = conditionResult.overNum;
   let evalJSStr = `history.go(${-overStepNumber})`;
   conditionBack.backWebviewObject.evalJS(evalJSStr);
   return closeWebview(backLocat, conditionResult, conditionBack);

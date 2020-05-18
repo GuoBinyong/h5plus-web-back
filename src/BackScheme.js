@@ -187,8 +187,3 @@ export class BackScheme {
   //返回栈：结束
 
 }
-
-
-
-
-export default BackScheme ;
