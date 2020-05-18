@@ -19,7 +19,7 @@ export class BackScheme {
    *
    * 通过 back 方法会选在 backMap 中查找并执行 相应的 conditionBack ；如果查找失败 或者 conditionBack 执行失败 ，则会通过 this.performBackStack(locat) 依次执行 backStack 中的 conditionBack ;
    */
-  constructor(backMap, backStack);
+  constructor(backMap?:BackMap | BackMapGet, backStack?:BackStack | BackStackGet);
 
 
 
