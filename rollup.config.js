@@ -51,6 +51,7 @@ export default [
 	*/
 	{
 		input: 'src/index',
+		external: getDependencieNames(pkg),  //移除 package.json 中所有的依赖包
 		output: {
 			name: toHumpFormat(pkg.name),  //驼峰格式的 pkg.name
 			// 如果 pkg.browser 是字符串类型，则 file 为 pkg.browser，否则为 `<包名>.umd.js`
